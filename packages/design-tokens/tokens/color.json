@@ -1,0 +1,55 @@
+{
+  "$schema": "https://design-tokens.org/schema.json",
+  "color": {
+    "energy": {
+      "production": {
+        "$type": "color",
+        "$value": "#16C784"
+      },
+      "consumption": {
+        "$type": "color",
+        "$value": "#F59E0B"
+      },
+      "import": {
+        "$type": "color",
+        "$value": "#EF4444"
+      },
+      "export": {
+        "$type": "color",
+        "$value": "#3B82F6"
+      }
+    },
+    "battery": {
+      "charging": {
+        "$type": "color",
+        "$value": "#22C55E"
+      },
+      "discharging": {
+        "$type": "color",
+        "$value": "#F97316"
+      },
+      "idle": {
+        "$type": "color",
+        "$value": "#94A3B8"
+      }
+    },
+    "status": {
+      "success": {
+        "$type": "color",
+        "$value": "#22C55E"
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "#FACC15"
+      },
+      "error": {
+        "$type": "color",
+        "$value": "#DC2626"
+      },
+      "info": {
+        "$type": "color",
+        "$value": "#0EA5E9"
+      }
+    }
+  }
+}

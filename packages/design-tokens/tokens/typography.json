@@ -1,0 +1,53 @@
+{
+  "$schema": "https://design-tokens.org/schema.json",
+  "typography": {
+    "font": {
+      "family": {
+        "base": {
+          "$type": "fontFamily",
+          "$value": "Inter, Arial, sans-serif"
+        },
+        "mono": {
+          "$type": "fontFamily",
+          "$value": "Consolas, monospace"
+        }
+      },
+      "size": {
+        "xs": {
+          "$type": "dimension",
+          "$value": "12px"
+        },
+        "sm": {
+          "$type": "dimension",
+          "$value": "14px"
+        },
+        "md": {
+          "$type": "dimension",
+          "$value": "16px"
+        },
+        "lg": {
+          "$type": "dimension",
+          "$value": "20px"
+        },
+        "xl": {
+          "$type": "dimension",
+          "$value": "24px"
+        }
+      },
+      "weight": {
+        "regular": {
+          "$type": "fontWeight",
+          "$value": 400
+        },
+        "medium": {
+          "$type": "fontWeight",
+          "$value": 500
+        },
+        "bold": {
+          "$type": "fontWeight",
+          "$value": 700
+        }
+      }
+    }
+  }
+}
