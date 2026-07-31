@@ -25,7 +25,19 @@ def test_grid_export() -> None:
     assert layout.is_grid_export() is True
 
 
-def test_total_local_power_import() -> None:
+def test_neutral_grid_flow() -> None:
+    layout = DashboardLayout(
+        solar_power_kw=3.0,
+        battery_soc=65,
+        house_power_kw=3.0,
+        grid_power_kw=0.0,
+    )
+
+    assert layout.is_grid_import() is False
+    assert layout.is_grid_export() is False
+
+
+def test_total_local_power_during_import() -> None:
     layout = DashboardLayout(
         solar_power_kw=4.5,
         battery_soc=90,
@@ -36,7 +48,7 @@ def test_total_local_power_import() -> None:
     assert layout.total_local_power() == 4.5
 
 
-def test_total_local_power_export() -> None:
+def test_total_local_power_during_export() -> None:
     layout = DashboardLayout(
         solar_power_kw=4.5,
         battery_soc=90,
