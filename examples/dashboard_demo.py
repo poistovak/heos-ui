@@ -1,4 +1,8 @@
-from heos_ui.dashboard import Dashboard, DashboardCard
+from heos_ui.dashboard import (
+    Dashboard,
+    DashboardCard,
+    DashboardRenderer,
+)
 
 dashboard = Dashboard(
     cards=[
@@ -9,4 +13,6 @@ dashboard = Dashboard(
     ]
 )
 
-print(dashboard)
+renderer = DashboardRenderer()
+
+print(renderer.render(dashboard))
