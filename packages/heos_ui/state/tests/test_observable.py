@@ -124,3 +124,23 @@ def test_snapshot_is_independent_copy() -> None:
     snapshot["pv_power"] = 99.0
 
     assert state.get("pv_power") == 8.4
+
+def test_transaction_notifies_after_commit() -> None:
+    state = ObservableState()
+
+    events: list[tuple[str, object]] = []
+
+    def observer(key: str, value: object) -> None:
+        events.append((key, value))
+
+    state.subscribe("pv_power", observer)
+
+    state.begin()
+
+    state.set("pv_power", 5.0)
+
+    assert events == []
+
+    state.commit()
+
+    assert events == [("pv_power", 5.0)]
