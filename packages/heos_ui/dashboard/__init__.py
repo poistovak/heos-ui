@@ -1,3 +1,4 @@
+from .builder import DashboardBuilder
 from .models import (
     Dashboard,
     DashboardCard,
@@ -12,4 +13,5 @@ __all__ = [
     "DashboardPage",
     "DashboardRenderer",
     "DashboardSection",
+    "DashboardBuilder",
 ]
