@@ -144,3 +144,32 @@ def test_transaction_notifies_after_commit() -> None:
     state.commit()
 
     assert events == [("pv_power", 5.0)]
+def test_transaction_rollback_restores_state() -> None:
+    state = ObservableState()
+
+    state.set("pv_power", 4.0)
+
+    state.begin()
+    state.set("pv_power", 9.0)
+    state.set("battery_soc", 85)
+    state.rollback()
+
+    assert state.get("pv_power") == 4.0
+    assert state.get("battery_soc") is None
+
+
+def test_transaction_rollback_does_not_notify() -> None:
+    state = ObservableState()
+
+    events: list[tuple[str, object]] = []
+
+    def observer(key: str, value: object) -> None:
+        events.append((key, value))
+
+    state.subscribe("pv_power", observer)
+
+    state.begin()
+    state.set("pv_power", 9.0)
+    state.rollback()
+
+    assert events == []
