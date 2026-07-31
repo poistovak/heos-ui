@@ -22,6 +22,7 @@ from .card import HEOSCard
 from .divider import HEOSDivider
 from .panel import HEOSPanel
 from .progress import HEOSProgress
+from .status import HEOSStatus, HEOSStatusLevel
 
 __all__ = [
     "Badge",
@@ -41,4 +42,6 @@ __all__ = [
     "HEOSPanel",
     "HEOSProgress",
     "HEOSDivider",
+    "HEOSStatus",
+    "HEOSStatusLevel",
 ]
