@@ -16,6 +16,8 @@ from components import (
     StatusChip,
 )
 
+from .card import HEOSCard
+
 __all__ = [
     "Badge",
     "BatteryIndicator",
@@ -25,6 +27,7 @@ __all__ = [
     "DashboardLayout",
     "EnergyUnit",
     "EnergyValue",
+    "HEOSCard",
     "PowerFlowIndicator",
     "PowerNode",
     "StatusChip",
