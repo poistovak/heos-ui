@@ -5,13 +5,15 @@ from .models import (
     DashboardPage,
     DashboardSection,
 )
+from .registry import DashboardRegistry
 from .renderer import DashboardRenderer
 
 __all__ = [
     "Dashboard",
+    "DashboardBuilder",
     "DashboardCard",
     "DashboardPage",
+    "DashboardRegistry",
     "DashboardRenderer",
     "DashboardSection",
-    "DashboardBuilder",
 ]
