@@ -45,3 +45,8 @@ class ObservableState(StateStore):
 
         for key, value in values.items():
             self.set(key, value)
+
+    def snapshot(self) -> dict[str, Any]:
+        """Return an independent copy of the current state."""
+
+        return dict(self._state)

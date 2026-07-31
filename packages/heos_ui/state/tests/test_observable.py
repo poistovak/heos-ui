@@ -99,3 +99,28 @@ def test_update_notifies_changed_keys() -> None:
 
     assert pv_events == [("pv_power", 8.4)]
     assert battery_events == []
+
+def test_snapshot_returns_current_state() -> None:
+    state = ObservableState()
+
+    state.update(
+        {
+            "pv_power": 8.4,
+            "battery_soc": 82,
+        }
+    )
+
+    assert state.snapshot() == {
+        "pv_power": 8.4,
+        "battery_soc": 82,
+    }
+
+def test_snapshot_is_independent_copy() -> None:
+    state = ObservableState()
+
+    state.set("pv_power", 8.4)
+
+    snapshot = state.snapshot()
+    snapshot["pv_power"] = 99.0
+
+    assert state.get("pv_power") == 8.4
