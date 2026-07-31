@@ -1,92 +1,70 @@
-\# HEOS UI
+# \# HEOS UI
 
+# 
 
+# Modern Python UI component library for Home Energy OS.
 
-\*\*HEOS UI\*\* is the official user interface platform for HomeEnergyOS (HEOS).
+# 
 
+# \## Features
 
+# 
 
-\## Vision
+# \- Design Tokens
 
+# \- Button
 
+# \- Badge
 
-Build a modern, platform-independent UI framework for energy management systems.
+# \- Card
 
+# \- Status Chip
 
+# \- Battery Indicator
 
-\## Features
+# \- Energy Value
 
+# \- Power Flow Indicator
 
+# \- Dashboard Layout
 
-\- Design Tokens (DTCG)
+# 
 
-\- Theme Engine
+# \## Installation
 
-\- Token Validator
+# 
 
-\- Automated Tests
+# ```bash
 
-\- GitHub Actions
+# pip install heos-ui
 
-\- Future Component Library
+# ```
 
+# 
 
+# \## Quick Example
 
-\## Repository Structure
+# 
 
+# ```python
 
+# from heos\_ui.components import Button
 
-```
+# 
 
-packages/
+# button = Button("Start HEOS")
 
-&#x20;   design-tokens/
+# 
 
-docs/
+# print(button)
 
-rfcs/
+# ```
 
-standards/
+# 
 
-```
+# \## Requirements
 
+# 
 
-
-\## Development
-
-
-
-Run validator:
-
-
-
-```bash
-
-python packages/design-tokens/validator/validate.py
-
-```
-
-
-
-Run tests:
-
-
-
-```bash
-
-pytest packages/design-tokens/tests -v
-
-```
-
-
-
-\## Status
-
-
-
-Current milestone:
-
-
-
-\*\*M31 — Design Tokens Foundation\*\*
+# \- Python 3.11+
 

@@ -2,7 +2,7 @@
 HEOS UI Components
 """
 
-from packages.components import (
+from components import (
     Badge,
     BatteryIndicator,
     BatteryState,
