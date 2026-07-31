@@ -1,19 +1,37 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 
-@dataclass(slots=True)
+@dataclass(frozen=True, slots=True)
 class DashboardCard:
-    """Represents one dashboard card."""
+    """Single dashboard card."""
 
     title: str
     value: str
-    icon: str
+    icon: str = ""
 
 
-@dataclass(slots=True)
+@dataclass(frozen=True, slots=True)
+class DashboardSection:
+    """Logical group of dashboard cards."""
+
+    title: str
+    cards: tuple[DashboardCard, ...] = field(default_factory=tuple)
+
+
+@dataclass(frozen=True, slots=True)
+class DashboardPage:
+    """Single dashboard page."""
+
+    id: str
+    title: str
+    sections: tuple[DashboardSection, ...] = field(default_factory=tuple)
+
+
+@dataclass(frozen=True, slots=True)
 class Dashboard:
-    """Simple dashboard container."""
+    """Root dashboard object."""
 
-    cards: list[DashboardCard]
+    title: str
+    pages: tuple[DashboardPage, ...] = field(default_factory=tuple)

@@ -13,13 +13,21 @@ class DashboardRenderer:
 
         lines = [
             "╔" + "═" * inner_width + "╗",
-            "║" + "HEOS HOME".center(inner_width) + "║",
+            "║" + dashboard.title.center(inner_width) + "║",
             "╠" + "═" * inner_width + "╣",
         ]
 
-        for card in dashboard.cards:
-            content = f"{card.icon} {card.title:<10} {card.value}"
-            lines.append("║" + content.ljust(inner_width) + "║")
+        for page in dashboard.pages:
+            lines.append("║ " + f"[{page.title}]".ljust(inner_width - 1) + "║")
+
+            for section in page.sections:
+                lines.append("║ " + f"• {section.title}".ljust(inner_width - 1) + "║")
+
+                for card in section.cards:
+                    content = (
+                        f"  {card.icon} {card.title:<12} {card.value}"
+                    ).rstrip()
+                    lines.append("║" + content.ljust(inner_width) + "║")
 
         lines.append("╚" + "═" * inner_width + "╝")
 
