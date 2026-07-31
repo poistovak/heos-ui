@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from collections.abc import Callable
+from collections.abc import Callable, Mapping
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -39,3 +39,9 @@ class ObservableState(StateStore):
 
         for observer in self._observers.get(key, ()):
             observer(key, value)
+
+    def update(self, values: Mapping[str, Any]) -> None:
+        """Update multiple state values."""
+
+        for key, value in values.items():
+            self.set(key, value)
