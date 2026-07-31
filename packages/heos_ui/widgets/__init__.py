@@ -1,12 +1,13 @@
 from .base import Widget
+from .container import WidgetContainer
 from .label import LabelWidget
+from .lifecycle import WidgetLifecycle
 from .value import ValueWidget
 
 __all__ = [
-    "Widget",
     "LabelWidget",
     "ValueWidget",
+    "Widget",
     "WidgetContainer",
+    "WidgetLifecycle",
 ]
-
-from .container import WidgetContainer
