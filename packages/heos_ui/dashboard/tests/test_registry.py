@@ -1,5 +1,4 @@
 import pytest
-
 from heos_ui.dashboard import Dashboard, DashboardRegistry
 
 
