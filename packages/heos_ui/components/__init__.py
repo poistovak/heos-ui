@@ -20,6 +20,7 @@ from .badge import HEOSBadge
 from .button import HEOSButton
 from .card import HEOSCard
 from .panel import HEOSPanel
+from .progress import HEOSProgress
 
 __all__ = [
     "Badge",
@@ -37,4 +38,5 @@ __all__ = [
     "HEOSButton",
     "HEOSBadge",
     "HEOSPanel",
+    "HEOSProgress",
 ]
