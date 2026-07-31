@@ -19,6 +19,7 @@ from components import (
 from .badge import HEOSBadge
 from .button import HEOSButton
 from .card import HEOSCard
+from .panel import HEOSPanel
 
 __all__ = [
     "Badge",
@@ -35,4 +36,5 @@ __all__ = [
     "StatusChip",
     "HEOSButton",
     "HEOSBadge",
+    "HEOSPanel",
 ]
