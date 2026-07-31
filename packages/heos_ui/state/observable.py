@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable, Mapping
+from contextlib import contextmanager
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -33,15 +34,11 @@ class ObservableState(StateStore):
             self._observers.pop(key, None)
 
     def begin(self) -> None:
-        """Begin a state transaction."""
-
         self._transaction = True
         self._pending.clear()
         self._transaction_snapshot = dict(self._state)
 
     def commit(self) -> None:
-        """Commit pending changes and notify observers."""
-
         if not self._transaction:
             return
 
@@ -55,8 +52,6 @@ class ObservableState(StateStore):
         self._transaction_snapshot = None
 
     def rollback(self) -> None:
-        """Discard pending changes and restore the previous state."""
-
         if not self._transaction:
             return
 
@@ -67,6 +62,18 @@ class ObservableState(StateStore):
         self._transaction = False
         self._pending.clear()
         self._transaction_snapshot = None
+
+    @contextmanager
+    def transaction(self):
+        self.begin()
+
+        try:
+            yield self
+        except Exception:
+            self.rollback()
+            raise
+        else:
+            self.commit()
 
     def set(self, key: str, value: Any) -> None:
         previous = self.get(key)
@@ -84,16 +91,9 @@ class ObservableState(StateStore):
             observer(key, value)
 
     def update(self, values: Mapping[str, Any]) -> None:
-        """Update multiple values as one transaction."""
-
-        self.begin()
-
-        for key, value in values.items():
-            self.set(key, value)
-
-        self.commit()
+        with self.transaction():
+            for key, value in values.items():
+                self.set(key, value)
 
     def snapshot(self) -> dict[str, Any]:
-        """Return an independent copy of the current state."""
-
         return dict(self._state)

@@ -173,3 +173,27 @@ def test_transaction_rollback_does_not_notify() -> None:
     state.rollback()
 
     assert events == []
+def test_transaction_context_manager() -> None:
+    state = ObservableState()
+
+    with state.transaction():
+        state.set("pv_power", 8.4)
+        state.set("battery_soc", 82)
+
+    assert state.get("pv_power") == 8.4
+    assert state.get("battery_soc") == 82
+
+
+def test_transaction_context_manager_rollback() -> None:
+    state = ObservableState()
+
+    state.set("pv_power", 5.0)
+
+    try:
+        with state.transaction():
+            state.set("pv_power", 9.0)
+            raise RuntimeError("rollback")
+    except RuntimeError:
+        pass
+
+    assert state.get("pv_power") == 5.0
