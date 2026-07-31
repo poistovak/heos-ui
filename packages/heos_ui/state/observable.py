@@ -1,13 +1,15 @@
 from __future__ import annotations
 
-from collections.abc import Callable, Mapping
+from collections.abc import Callable, Iterator, Mapping
 from contextlib import contextmanager
 from dataclasses import dataclass, field
 from typing import Any
 
+from .events import StateChangeEvent
 from .store import StateStore
 
 StateObserver = Callable[[str, Any], None]
+StateEventObserver = Callable[[StateChangeEvent], None]
 
 
 @dataclass(slots=True)
@@ -15,6 +17,7 @@ class ObservableState(StateStore):
     """State store with transactional change notifications."""
 
     _observers: dict[str, list[StateObserver]] = field(default_factory=dict)
+    _event_observers: list[StateEventObserver] = field(default_factory=list)
     _transaction: bool = False
     _pending: dict[str, Any] = field(default_factory=dict)
     _transaction_snapshot: dict[str, Any] | None = None
@@ -33,6 +36,17 @@ class ObservableState(StateStore):
         if not observers:
             self._observers.pop(key, None)
 
+    def subscribe_events(self, observer: StateEventObserver) -> None:
+        """Subscribe to all committed state changes."""
+
+        self._event_observers.append(observer)
+
+    def unsubscribe_events(self, observer: StateEventObserver) -> None:
+        """Unsubscribe from all state-change events."""
+
+        if observer in self._event_observers:
+            self._event_observers.remove(observer)
+
     def begin(self) -> None:
         self._transaction = True
         self._pending.clear()
@@ -45,8 +59,7 @@ class ObservableState(StateStore):
         self._transaction = False
 
         for key, value in self._pending.items():
-            for observer in self._observers.get(key, ()):
-                observer(key, value)
+            self._notify(key, value)
 
         self._pending.clear()
         self._transaction_snapshot = None
@@ -64,7 +77,7 @@ class ObservableState(StateStore):
         self._transaction_snapshot = None
 
     @contextmanager
-    def transaction(self):
+    def transaction(self) -> Iterator[ObservableState]:
         self.begin()
 
         try:
@@ -87,8 +100,7 @@ class ObservableState(StateStore):
             self._pending[key] = value
             return
 
-        for observer in self._observers.get(key, ()):
-            observer(key, value)
+        self._notify(key, value)
 
     def update(self, values: Mapping[str, Any]) -> None:
         with self.transaction():
@@ -97,3 +109,12 @@ class ObservableState(StateStore):
 
     def snapshot(self) -> dict[str, Any]:
         return dict(self._state)
+
+    def _notify(self, key: str, value: Any) -> None:
+        for observer in self._observers.get(key, ()):
+            observer(key, value)
+
+        event = StateChangeEvent(key=key, value=value)
+
+        for observer in tuple(self._event_observers):
+            observer(event)
