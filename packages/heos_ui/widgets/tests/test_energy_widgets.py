@@ -1,5 +1,4 @@
 import pytest
-
 from heos_ui.widgets import (
     BatteryState,
     BatteryWidget,
