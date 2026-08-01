@@ -3,14 +3,14 @@ from __future__ import annotations
 from heos_ui.widgets.base import Widget
 
 from .frame import FrameResult
-from .scheduler import RenderScheduler
+from .pipeline import RenderPipeline
 
 
 class FrameScheduler:
-    """Coordinates widget invalidation and frame rendering."""
+    """Coordinates invalidation and frame rendering."""
 
-    def __init__(self) -> None:
-        self._scheduler = RenderScheduler()
+    def __init__(self, pipeline: RenderPipeline | None = None) -> None:
+        self._pipeline = pipeline or RenderPipeline()
         self._frame_number = 0
 
     @property
@@ -21,26 +21,20 @@ class FrameScheduler:
 
     @property
     def pending_count(self) -> int:
-        """Return the number of widgets waiting for rendering."""
+        """Return the number of widgets awaiting rendering."""
 
-        return self._scheduler.pending_count
+        return self._pipeline.pending_count
 
     def invalidate(self, widget: Widget) -> bool:
-        """Invalidate and schedule a widget.
+        """Invalidate and schedule a widget."""
 
-        Returns:
-            True when the widget became dirty, otherwise False.
-        """
-
-        became_dirty = widget.invalidate()
-        self._scheduler.invalidate(widget)
-        return became_dirty
+        return self._pipeline.invalidate(widget)
 
     def render_frame(self) -> FrameResult:
-        """Render all currently scheduled widgets as one frame."""
+        """Render all pending widgets as one frame."""
 
-        pending_widgets = self._scheduler.pending_count
-        rendered_widgets = self._scheduler.flush()
+        pending_widgets = self._pipeline.pending_count
+        rendered_widgets = self._pipeline.render_pending()
         self._frame_number += 1
 
         return FrameResult(
