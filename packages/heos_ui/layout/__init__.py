@@ -15,6 +15,7 @@ from .insets import EdgeInsets
 from .measure import MeasureEngine
 from .responsive import Breakpoints, ResponsiveLayout
 from .vertical import VerticalLayout
+from .tree import LayoutNode, LayoutTree
 
 __all__ = [
     "Layout",
@@ -35,6 +36,8 @@ __all__ = [
     "FlexDirection",
     "FlexItem",
     "FlexLayout",
+    "LayoutNode",
+    "LayoutTree",
 ]
 from .grid import GridLayout
 from .stack import StackDirection, StackLayout
