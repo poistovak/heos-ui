@@ -10,6 +10,7 @@ from .pipeline import RenderPipeline
 from .render_queue import RenderQueue
 from .scheduler import RenderScheduler
 from .statistics import RenderStatistics
+from .lifecycle import RenderLifecycle
 
 __all__ = [
     "FrameBatch",
@@ -25,4 +26,5 @@ __all__ = [
     "RenderLoop",
     "RenderEvent",
     "RenderEvents",
+    "RenderLifecycle",
 ]
