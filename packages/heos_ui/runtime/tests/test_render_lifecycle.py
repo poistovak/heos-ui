@@ -1,5 +1,4 @@
 import pytest
-
 from heos_ui.runtime import RenderLifecycle
 
 
