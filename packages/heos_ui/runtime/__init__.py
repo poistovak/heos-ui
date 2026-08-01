@@ -1,6 +1,7 @@
 from .budget import FrameBudget
 from .clock import FrameClock
 from .engine import RenderEngine
+from .events import RenderEvent, RenderEvents
 from .frame import FrameResult
 from .frame_batch import FrameBatch
 from .frame_scheduler import FrameScheduler
@@ -22,4 +23,6 @@ __all__ = [
     "FrameBudget",
     "FrameClock",
     "RenderLoop",
+    "RenderEvent",
+    "RenderEvents",
 ]
