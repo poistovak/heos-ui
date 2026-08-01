@@ -1,5 +1,6 @@
 from .budget import FrameBudget
 from .clock import FrameClock
+from .context import RenderContext
 from .diagnostics import RenderDiagnostics
 from .engine import RenderEngine
 from .events import RenderEvent, RenderEvents
@@ -16,8 +17,8 @@ from .profiler import (
 )
 from .render_queue import RenderQueue
 from .scheduler import RenderScheduler
-from .statistics import RenderStatistics
 from .snapshot import RuntimeSnapshot
+from .statistics import RenderStatistics
 
 __all__ = [
     "FrameBatch",
@@ -39,4 +40,5 @@ __all__ = [
     "RenderProfiler",
     "RenderProfilerSnapshot",
     "RuntimeSnapshot",
+    "RenderContext",
 ]
