@@ -2,6 +2,7 @@ from .budget import FrameBudget
 from .clock import FrameClock
 from .context import RenderContext
 from .diagnostics import RenderDiagnostics
+from .dispatcher import RenderDispatcher
 from .engine import RenderEngine
 from .events import RenderEvent, RenderEvents
 from .frame import FrameResult
@@ -21,7 +22,7 @@ from .service import RenderRuntime
 from .session import RenderSession
 from .snapshot import RuntimeSnapshot
 from .statistics import RenderStatistics
-from .dispatcher import RenderDispatcher
+from .registry import RenderRegistry
 
 __all__ = [
     "FrameBatch",
@@ -47,5 +48,6 @@ __all__ = [
     "RenderRuntime",
     "RenderSession",
     "RenderDispatcher",
+    "RenderRegistry",
 ]
 
