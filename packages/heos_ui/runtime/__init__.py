@@ -1,6 +1,7 @@
 from .budget import FrameBudget
 from .clock import FrameClock
 from .context import RenderContext
+from .coordinator import RenderCoordinator
 from .diagnostics import RenderDiagnostics
 from .dispatcher import RenderDispatcher
 from .engine import RenderEngine
@@ -24,7 +25,6 @@ from .service import RenderRuntime
 from .session import RenderSession
 from .snapshot import RuntimeSnapshot
 from .statistics import RenderStatistics
-from .coordinator import RenderCoordinator
 
 __all__ = [
     "FrameBatch",
