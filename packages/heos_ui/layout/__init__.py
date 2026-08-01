@@ -5,11 +5,16 @@ from .alignment import (
 )
 from .arrange import ArrangeEngine, Rect
 from .base import Layout
+from .flex import (
+    FlexDirection,
+    FlexItem,
+    FlexLayout,
+)
 from .horizontal import HorizontalLayout
+from .insets import EdgeInsets
 from .measure import MeasureEngine
 from .responsive import Breakpoints, ResponsiveLayout
 from .vertical import VerticalLayout
-from .insets import EdgeInsets
 
 __all__ = [
     "Layout",
@@ -27,6 +32,9 @@ __all__ = [
     "HorizontalAlignment",
     "VerticalAlignment",
     "EdgeInsets",
+    "FlexDirection",
+    "FlexItem",
+    "FlexLayout",
 ]
 from .grid import GridLayout
 from .stack import StackDirection, StackLayout
