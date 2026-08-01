@@ -21,6 +21,7 @@ from .service import RenderRuntime
 from .session import RenderSession
 from .snapshot import RuntimeSnapshot
 from .statistics import RenderStatistics
+from .dispatcher import RenderDispatcher
 
 __all__ = [
     "FrameBatch",
@@ -45,5 +46,6 @@ __all__ = [
     "RenderContext",
     "RenderRuntime",
     "RenderSession",
+    "RenderDispatcher",
 ]
 
