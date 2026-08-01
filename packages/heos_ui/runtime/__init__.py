@@ -4,6 +4,7 @@ from .engine import RenderEngine
 from .frame import FrameResult
 from .frame_batch import FrameBatch
 from .frame_scheduler import FrameScheduler
+from .loop import RenderLoop
 from .pipeline import RenderPipeline
 from .render_queue import RenderQueue
 from .scheduler import RenderScheduler
@@ -20,4 +21,5 @@ __all__ = [
     "RenderStatistics",
     "FrameBudget",
     "FrameClock",
+    "RenderLoop",
 ]
