@@ -1,5 +1,4 @@
 import pytest
-
 from heos_ui.layout.constraints import LayoutConstraints, Size
 
 
