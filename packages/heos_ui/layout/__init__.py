@@ -6,6 +6,7 @@ from .vertical import VerticalLayout
 
 __all__ = [
     "Layout",
+    "GridLayout",
     "HorizontalLayout",
     "StackDirection",
     "StackLayout",
@@ -14,5 +15,6 @@ __all__ = [
     "ArrangeEngine",
     "Rect",
 ]
+from .grid import GridLayout
 from .stack import StackDirection, StackLayout
 
