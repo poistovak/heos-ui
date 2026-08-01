@@ -17,9 +17,10 @@ from .profiler import (
 )
 from .render_queue import RenderQueue
 from .scheduler import RenderScheduler
+from .service import RenderRuntime
+from .session import RenderSession
 from .snapshot import RuntimeSnapshot
 from .statistics import RenderStatistics
-from .session import RenderSession
 
 __all__ = [
     "FrameBatch",
@@ -42,5 +43,7 @@ __all__ = [
     "RenderProfilerSnapshot",
     "RuntimeSnapshot",
     "RenderContext",
+    "RenderRuntime",
     "RenderSession",
 ]
+
