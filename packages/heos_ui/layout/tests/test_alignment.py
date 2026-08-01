@@ -6,7 +6,6 @@ from heos_ui.layout.alignment import (
 from heos_ui.layout.arrange import Rect
 from heos_ui.layout.constraints import Size
 
-
 CONTAINER = Rect(
     x=0.0,
     y=0.0,
