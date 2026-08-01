@@ -1,9 +1,10 @@
 from __future__ import annotations
 
+from heos_ui.widgets.base import Widget
+
 from .dispatcher import RenderDispatcher
 from .registry import RenderRegistry
 from .service import RenderRuntime
-from heos_ui.widgets.base import Widget
 
 
 class RenderOrchestrator:

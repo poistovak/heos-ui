@@ -11,6 +11,7 @@ from .frame_scheduler import FrameScheduler
 from .lifecycle import RenderLifecycle
 from .loop import RenderLoop
 from .metrics import RenderMetrics
+from .orchestrator import RenderOrchestrator
 from .pipeline import RenderPipeline
 from .profiler import (
     RenderProfiler,
@@ -23,7 +24,7 @@ from .service import RenderRuntime
 from .session import RenderSession
 from .snapshot import RuntimeSnapshot
 from .statistics import RenderStatistics
-from .orchestrator import RenderOrchestrator
+from .coordinator import RenderCoordinator
 
 __all__ = [
     "FrameBatch",
@@ -51,5 +52,6 @@ __all__ = [
     "RenderDispatcher",
     "RenderRegistry",
     "RenderOrchestrator",
+    "RenderCoordinator",
 ]
 
