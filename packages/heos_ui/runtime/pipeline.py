@@ -2,40 +2,50 @@ from __future__ import annotations
 
 from heos_ui.widgets.base import Widget
 
-from .render_queue import RenderQueue
+from .frame_batch import FrameBatch
 
 
 class RenderPipeline:
-    """Collects invalidations and renders queued widgets."""
+    """Collects invalidations and renders stable widget frames."""
 
     def __init__(self) -> None:
-        self._queue = RenderQueue()
+        self._batch = FrameBatch()
 
     @property
     def pending_count(self) -> int:
-        """Return the number of widgets waiting for rendering."""
+        """Return widgets waiting for the next frame."""
 
-        return self._queue.pending_count
+        return self._batch.pending_count
+
+    @property
+    def frame_id(self) -> int:
+        """Return the number of frames started by the pipeline."""
+
+        return self._batch.frame_id
 
     def invalidate(self, widget: Widget) -> bool:
-        """Invalidate and enqueue a widget."""
+        """Invalidate and schedule a widget."""
 
         became_dirty = widget.invalidate()
-        self._queue.enqueue(widget)
+        self._batch.enqueue(widget)
         return became_dirty
 
     def render_pending(self) -> int:
-        """Render all currently queued dirty widgets."""
+        """Render one stable frame of pending widgets."""
 
+        widgets = self._batch.begin()
         rendered = 0
 
-        for widget in self._queue.dequeue_all():
-            if widget.render_if_dirty():
-                rendered += 1
+        try:
+            for widget in widgets:
+                if widget.render_if_dirty():
+                    rendered += 1
+        finally:
+            self._batch.end()
 
         return rendered
 
     def clear(self) -> None:
-        """Discard all pending widgets."""
+        """Discard widgets waiting for a future frame."""
 
-        self._queue.clear()
+        self._batch.clear()
