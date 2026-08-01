@@ -1,3 +1,4 @@
+from .budget import FrameBudget
 from .engine import RenderEngine
 from .frame import FrameResult
 from .frame_batch import FrameBatch
@@ -16,4 +17,5 @@ __all__ = [
     "RenderQueue",
     "RenderScheduler",
     "RenderStatistics",
+    "FrameBudget",
 ]
