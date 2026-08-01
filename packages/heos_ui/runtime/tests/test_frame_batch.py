@@ -1,5 +1,4 @@
 import pytest
-
 from heos_ui.runtime import FrameBatch, RenderPipeline
 from heos_ui.widgets.base import Widget
 

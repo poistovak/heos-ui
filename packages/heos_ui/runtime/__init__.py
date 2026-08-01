@@ -1,3 +1,4 @@
+from .engine import RenderEngine
 from .frame import FrameResult
 from .frame_batch import FrameBatch
 from .frame_scheduler import FrameScheduler
@@ -12,4 +13,5 @@ __all__ = [
     "RenderPipeline",
     "RenderQueue",
     "RenderScheduler",
+    "RenderEngine",
 ]
