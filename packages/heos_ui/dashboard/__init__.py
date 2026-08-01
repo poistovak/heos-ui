@@ -1,5 +1,6 @@
 from .builder import DashboardBuilder
 from .composer import DashboardComposer
+from .layout import DashboardLayout
 from .models import (
     Dashboard,
     DashboardCard,
@@ -18,4 +19,5 @@ __all__ = [
     "DashboardRegistry",
     "DashboardRenderer",
     "DashboardSection",
+    "DashboardLayout",
 ]
