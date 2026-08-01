@@ -16,13 +16,13 @@ from .profiler import (
     RenderProfiler,
     RenderProfilerSnapshot,
 )
+from .registry import RenderRegistry
 from .render_queue import RenderQueue
 from .scheduler import RenderScheduler
 from .service import RenderRuntime
 from .session import RenderSession
 from .snapshot import RuntimeSnapshot
 from .statistics import RenderStatistics
-from .registry import RenderRegistry
 
 __all__ = [
     "FrameBatch",
