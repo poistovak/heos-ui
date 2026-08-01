@@ -9,6 +9,7 @@ from .energy import (
     PowerWidget,
     SolarWidget,
 )
+from .factory import WidgetFactory
 from .flow import FlowWidget
 from .label import LabelWidget
 from .lifecycle import WidgetLifecycle
@@ -33,4 +34,5 @@ __all__ = [
     "Widget",
     "WidgetContainer",
     "WidgetLifecycle",
+    "WidgetFactory",
 ]
