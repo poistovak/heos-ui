@@ -9,6 +9,7 @@ from .energy import (
     PowerWidget,
     SolarWidget,
 )
+from .flow import FlowWidget
 from .label import LabelWidget
 from .lifecycle import WidgetLifecycle
 from .progress import ProgressWidget
@@ -19,6 +20,7 @@ __all__ = [
     "BadgeWidget",
     "BatteryState",
     "BatteryWidget",
+    "FlowWidget",
     "GridWidget",
     "LabelWidget",
     "PowerDirection",
