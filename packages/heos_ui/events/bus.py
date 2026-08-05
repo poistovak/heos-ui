@@ -1,21 +1,51 @@
 from __future__ import annotations
 
+from collections import defaultdict
 from collections.abc import Callable
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Any
 
-EventHandler = Callable[[Any], None]
+
+@dataclass(frozen=True, slots=True)
+class Event:
+    name: str
+    payload: Any = None
 
 
-@dataclass(slots=True)
 class EventBus:
-    """Simple publish/subscribe event bus."""
+    def __init__(self) -> None:
+        self._handlers: dict[
+            str,
+            list[Callable[[Any], None]],
+        ] = defaultdict(list)
 
-    _handlers: dict[str, list[EventHandler]] = field(default_factory=dict)
+    def subscribe(
+        self,
+        event_name: str,
+        handler: Callable[[Any], None],
+    ) -> None:
+        self._handlers[event_name].append(handler)
 
-    def subscribe(self, event: str, handler: EventHandler) -> None:
-        self._handlers.setdefault(event, []).append(handler)
+    def publish(
+        self,
+        event: Event | str,
+        payload: Any = None,
+    ) -> None:
+        if isinstance(event, Event):
+            event_name = event.name
+            value = event.payload
+        else:
+            event_name = event
+            value = payload
 
-    def publish(self, event: str, payload: Any = None) -> None:
-        for handler in self._handlers.get(event, []):
-            handler(payload)
+        for handler in tuple(self._handlers.get(event_name, ())):
+            handler(value)
+
+    def subscriber_count(
+        self,
+        event_name: str,
+    ) -> int:
+        return len(self._handlers.get(event_name, ()))
+
+    def clear(self) -> None:
+        self._handlers.clear()
