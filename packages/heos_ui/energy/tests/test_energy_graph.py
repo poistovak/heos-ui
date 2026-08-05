@@ -1,5 +1,4 @@
 import pytest
-
 from heos_ui.energy import (
     EnergyFlow,
     EnergyGraph,
