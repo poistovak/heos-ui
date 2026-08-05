@@ -1,5 +1,4 @@
 import pytest
-
 from heos_ui.adapters import AdapterDispatcher
 from heos_ui.decision import (
     Action,
