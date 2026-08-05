@@ -1,9 +1,10 @@
+from .animation import Animation, AnimationEngine
+from .canvas import CanvasBackend
 from .dirty import DirtyRegionEngine
 from .graph import SceneGraph, SceneNode
 from .paint import PaintCommand, PaintList
 from .render_queue import RenderQueue
 from .renderer import RenderResult, SceneRenderer
-from .canvas import CanvasBackend
 
 __all__ = [
     "DirtyRegionEngine",
@@ -15,4 +16,6 @@ __all__ = [
     "SceneNode",
     "SceneRenderer",
     "CanvasBackend",
+    "Animation",
+    "AnimationEngine",
 ]
