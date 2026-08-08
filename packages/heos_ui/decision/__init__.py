@@ -15,6 +15,7 @@ from .guarded_pipeline import (
 from .health_guard import HealthAwareDecisionGuard, HealthGuardResult
 from .planner import Decision, DecisionPlanner
 from .recovery_scheduler import RecoveryScheduler
+from .runtime import DecisionRuntime, DecisionRuntimeResult
 from .self_healing import SelfHealingCoordinator
 from .trace import DecisionTrace, DecisionTraceEntry
 
@@ -41,4 +42,6 @@ __all__ = [
     "BlockedDecision",
     "GuardedDecisionPipeline",
     "GuardedDecisionResult",
+    "DecisionRuntime",
+    "DecisionRuntimeResult",
 ]
