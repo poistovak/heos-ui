@@ -7,6 +7,11 @@ from .audit import (
 from .backoff import BackoffDecision, BackoffPolicy
 from .conflict import ConflictResolver, DecisionAction
 from .feedback import FeedbackEngine, FeedbackSummary
+from .guarded_pipeline import (
+    BlockedDecision,
+    GuardedDecisionPipeline,
+    GuardedDecisionResult,
+)
 from .health_guard import HealthAwareDecisionGuard, HealthGuardResult
 from .planner import Decision, DecisionPlanner
 from .recovery_scheduler import RecoveryScheduler
@@ -33,4 +38,7 @@ __all__ = [
     "SelfHealingCoordinator",
     "HealthAwareDecisionGuard",
     "HealthGuardResult",
+    "BlockedDecision",
+    "GuardedDecisionPipeline",
+    "GuardedDecisionResult",
 ]
