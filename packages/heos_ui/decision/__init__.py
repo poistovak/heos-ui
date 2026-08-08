@@ -7,6 +7,7 @@ from .audit import (
 from .backoff import BackoffDecision, BackoffPolicy
 from .conflict import ConflictResolver, DecisionAction
 from .feedback import FeedbackEngine, FeedbackSummary
+from .health_guard import HealthAwareDecisionGuard, HealthGuardResult
 from .planner import Decision, DecisionPlanner
 from .recovery_scheduler import RecoveryScheduler
 from .self_healing import SelfHealingCoordinator
@@ -30,4 +31,6 @@ __all__ = [
     "BackoffPolicy",
     "RecoveryScheduler",
     "SelfHealingCoordinator",
+    "HealthAwareDecisionGuard",
+    "HealthGuardResult",
 ]
