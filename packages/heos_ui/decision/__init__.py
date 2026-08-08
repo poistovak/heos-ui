@@ -5,6 +5,7 @@ from .audit import (
     DecisionOutcome,
 )
 from .conflict import ConflictResolver, DecisionAction
+from .feedback import FeedbackEngine, FeedbackSummary
 from .planner import Decision, DecisionPlanner
 from .trace import DecisionTrace, DecisionTraceEntry
 
@@ -20,4 +21,6 @@ __all__ = [
     "DecisionAuditRecord",
     "DecisionAuditTrail",
     "DecisionOutcome",
+    "FeedbackEngine",
+    "FeedbackSummary",
 ]
