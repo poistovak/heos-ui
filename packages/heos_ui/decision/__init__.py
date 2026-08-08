@@ -5,6 +5,7 @@ from .audit import (
     DecisionOutcome,
 )
 from .backoff import BackoffDecision, BackoffPolicy
+from .brain import BrainCycleReport, HEOSBrainSupervisor
 from .conflict import ConflictResolver, DecisionAction
 from .feedback import FeedbackEngine, FeedbackSummary
 from .guarded_pipeline import (
@@ -50,4 +51,6 @@ __all__ = [
     "RuntimeCycleResult",
     "RuntimeCycleHistory",
     "RuntimeCycleRecord",
+    "BrainCycleReport",
+    "HEOSBrainSupervisor",
 ]
