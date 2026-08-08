@@ -2,11 +2,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from heos_ui.decision import (
-    DecisionAction,
-    DecisionAuditTrail,
-    DecisionOutcome,
-)
+from heos_ui.decision.audit import DecisionAuditTrail, DecisionOutcome
+from heos_ui.decision.conflict import DecisionAction
 from heos_ui.decision.recovery import RecoveryState
 from heos_ui.energy import EnergySnapshot
 
