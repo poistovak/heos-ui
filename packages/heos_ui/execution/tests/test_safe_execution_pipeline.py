@@ -6,7 +6,10 @@ from heos_ui.decision import (
     DecisionAuditTrail,
     FeedbackEngine,
 )
-from heos_ui.decision.recovery import RecoveryPolicy
+from heos_ui.decision.recovery import (
+    RecoveryPolicy,
+    RecoveryState,
+)
 from heos_ui.energy import EnergySnapshot
 from heos_ui.execution import ExecutionEngine, ExecutionSafetyGate
 from heos_ui.execution.pipeline import SafeExecutionPipeline
@@ -60,6 +63,25 @@ def create_pipeline(
     )
 
     return pipeline, audit, feedback, recovery
+
+
+def enter_probe(
+    pipeline: SafeExecutionPipeline,
+    recovery: RecoveryPolicy,
+    target: str = "wattpilot",
+) -> None:
+    pipeline.execute(
+        EnergySnapshot(),
+        candidate(target),
+        success=False,
+    )
+    pipeline.execute(
+        EnergySnapshot(),
+        candidate(target),
+        success=False,
+    )
+
+    recovery.begin_probe(target)
 
 
 def test_successful_execution_is_audited() -> None:
@@ -211,3 +233,122 @@ def test_probe_can_pass_gate() -> None:
 
     assert result.executed
     assert result.success
+
+
+def test_successful_probe_returns_target_to_healthy() -> None:
+    pipeline, _, _, recovery = create_pipeline(
+        threshold=2,
+    )
+
+    enter_probe(
+        pipeline,
+        recovery,
+    )
+
+    result = pipeline.execute(
+        EnergySnapshot(),
+        candidate(),
+        success=True,
+        message="Probe succeeded.",
+    )
+
+    assert result.executed
+    assert result.success
+    assert (
+        recovery.state("wattpilot")
+        is RecoveryState.HEALTHY
+    )
+
+
+def test_failed_probe_returns_target_to_backoff() -> None:
+    pipeline, _, _, recovery = create_pipeline(
+        threshold=2,
+    )
+
+    enter_probe(
+        pipeline,
+        recovery,
+    )
+
+    result = pipeline.execute(
+        EnergySnapshot(),
+        candidate(),
+        success=False,
+        message="Probe failed.",
+    )
+
+    assert result.executed
+    assert not result.success
+    assert (
+        recovery.state("wattpilot")
+        is RecoveryState.BACKOFF
+    )
+
+
+def test_successful_probe_is_audited() -> None:
+    pipeline, audit, _, recovery = create_pipeline(
+        threshold=2,
+    )
+
+    enter_probe(
+        pipeline,
+        recovery,
+    )
+
+    pipeline.execute(
+        EnergySnapshot(),
+        candidate(),
+        success=True,
+        message="Recovered.",
+    )
+
+    assert audit.count == 3
+    assert audit.records()[-1].outcome.success
+
+
+def test_failed_probe_is_audited() -> None:
+    pipeline, audit, _, recovery = create_pipeline(
+        threshold=2,
+    )
+
+    enter_probe(
+        pipeline,
+        recovery,
+    )
+
+    pipeline.execute(
+        EnergySnapshot(),
+        candidate(),
+        success=False,
+        message="Still unavailable.",
+    )
+
+    assert audit.count == 3
+    assert not audit.records()[-1].outcome.success
+
+
+def test_probe_recovery_is_target_specific() -> None:
+    pipeline, _, _, recovery = create_pipeline(
+        threshold=2,
+    )
+
+    enter_probe(
+        pipeline,
+        recovery,
+        "wattpilot",
+    )
+
+    pipeline.execute(
+        EnergySnapshot(),
+        candidate("wattpilot"),
+        success=True,
+    )
+
+    assert (
+        recovery.state("wattpilot")
+        is RecoveryState.HEALTHY
+    )
+    assert (
+        recovery.state("daikin")
+        is RecoveryState.HEALTHY
+    )

@@ -7,6 +7,7 @@ from heos_ui.decision import (
     DecisionAuditTrail,
     DecisionOutcome,
 )
+from heos_ui.decision.recovery import RecoveryState
 from heos_ui.energy import EnergySnapshot
 
 from .safety_gate import ExecutionSafetyGate
@@ -54,6 +55,12 @@ class SafeExecutionPipeline:
             candidate,
             outcome,
         )
+
+        if gate_decision.state is RecoveryState.PROBE:
+            if success:
+                self.gate.recovery.probe_succeeded(target)
+            else:
+                self.gate.recovery.probe_failed(target)
 
         return PipelineResult(
             target=target,
