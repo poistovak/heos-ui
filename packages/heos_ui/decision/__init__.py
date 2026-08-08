@@ -8,6 +8,7 @@ from .backoff import BackoffDecision, BackoffPolicy
 from .brain import BrainCycleReport, HEOSBrainSupervisor
 from .brain_publisher import BrainSnapshotPublisher
 from .brain_snapshot import BrainRuntimeSnapshot
+from .brain_store import BrainSnapshotStore
 from .brain_telemetry import BrainCycleTelemetry
 from .conflict import ConflictResolver, DecisionAction
 from .feedback import FeedbackEngine, FeedbackSummary
@@ -59,4 +60,5 @@ __all__ = [
     "BrainCycleTelemetry",
     "BrainRuntimeSnapshot",
     "BrainSnapshotPublisher",
+    "BrainSnapshotStore",
 ]
