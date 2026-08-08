@@ -1,6 +1,7 @@
 from .action_queue import Action, ActionQueue
 from .conflict import ConflictResolver, DecisionAction
 from .planner import Decision, DecisionPlanner
+from .trace import DecisionTrace, DecisionTraceEntry
 
 __all__ = [
     "Action",
@@ -9,4 +10,6 @@ __all__ = [
     "Decision",
     "DecisionAction",
     "DecisionPlanner",
+    "DecisionTrace",
+    "DecisionTraceEntry",
 ]
