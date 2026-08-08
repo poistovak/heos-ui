@@ -4,6 +4,7 @@ from .audit import (
     DecisionAuditTrail,
     DecisionOutcome,
 )
+from .backoff import BackoffDecision, BackoffPolicy
 from .conflict import ConflictResolver, DecisionAction
 from .feedback import FeedbackEngine, FeedbackSummary
 from .planner import Decision, DecisionPlanner
@@ -23,4 +24,6 @@ __all__ = [
     "DecisionOutcome",
     "FeedbackEngine",
     "FeedbackSummary",
+    "BackoffDecision",
+    "BackoffPolicy",
 ]
