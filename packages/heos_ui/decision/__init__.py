@@ -8,6 +8,7 @@ from .backoff import BackoffDecision, BackoffPolicy
 from .conflict import ConflictResolver, DecisionAction
 from .feedback import FeedbackEngine, FeedbackSummary
 from .planner import Decision, DecisionPlanner
+from .recovery_scheduler import RecoveryScheduler
 from .trace import DecisionTrace, DecisionTraceEntry
 
 __all__ = [
@@ -26,4 +27,5 @@ __all__ = [
     "FeedbackSummary",
     "BackoffDecision",
     "BackoffPolicy",
+    "RecoveryScheduler",
 ]
