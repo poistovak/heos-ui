@@ -17,6 +17,7 @@ from .planner import Decision, DecisionPlanner
 from .recovery_scheduler import RecoveryScheduler
 from .runtime import DecisionRuntime, DecisionRuntimeResult
 from .runtime_cycle import RuntimeCycle, RuntimeCycleResult
+from .runtime_history import RuntimeCycleHistory, RuntimeCycleRecord
 from .self_healing import SelfHealingCoordinator
 from .trace import DecisionTrace, DecisionTraceEntry
 
@@ -47,4 +48,6 @@ __all__ = [
     "DecisionRuntimeResult",
     "RuntimeCycle",
     "RuntimeCycleResult",
+    "RuntimeCycleHistory",
+    "RuntimeCycleRecord",
 ]
