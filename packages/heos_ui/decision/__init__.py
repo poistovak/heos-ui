@@ -6,6 +6,7 @@ from .audit import (
 )
 from .backoff import BackoffDecision, BackoffPolicy
 from .brain import BrainCycleReport, HEOSBrainSupervisor
+from .brain_snapshot import BrainRuntimeSnapshot
 from .brain_telemetry import BrainCycleTelemetry
 from .conflict import ConflictResolver, DecisionAction
 from .feedback import FeedbackEngine, FeedbackSummary
@@ -55,4 +56,5 @@ __all__ = [
     "RuntimeCycleResult",
     "SelfHealingCoordinator",
     "BrainCycleTelemetry",
+    "BrainRuntimeSnapshot",
 ]
