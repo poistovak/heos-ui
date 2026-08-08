@@ -1,4 +1,9 @@
 from .action_queue import Action, ActionQueue
+from .audit import (
+    DecisionAuditRecord,
+    DecisionAuditTrail,
+    DecisionOutcome,
+)
 from .conflict import ConflictResolver, DecisionAction
 from .planner import Decision, DecisionPlanner
 from .trace import DecisionTrace, DecisionTraceEntry
@@ -12,4 +17,7 @@ __all__ = [
     "DecisionPlanner",
     "DecisionTrace",
     "DecisionTraceEntry",
+    "DecisionAuditRecord",
+    "DecisionAuditTrail",
+    "DecisionOutcome",
 ]
