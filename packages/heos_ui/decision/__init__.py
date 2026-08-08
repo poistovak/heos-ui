@@ -10,6 +10,7 @@ from .brain_publisher import BrainSnapshotPublisher
 from .brain_snapshot import BrainRuntimeSnapshot
 from .brain_store import BrainSnapshotStore
 from .brain_telemetry import BrainCycleTelemetry
+from .brain_view import BrainViewModel
 from .conflict import ConflictResolver, DecisionAction
 from .feedback import FeedbackEngine, FeedbackSummary
 from .guarded_pipeline import (
@@ -61,4 +62,5 @@ __all__ = [
     "BrainRuntimeSnapshot",
     "BrainSnapshotPublisher",
     "BrainSnapshotStore",
+    "BrainViewModel",
 ]
