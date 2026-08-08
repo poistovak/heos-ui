@@ -6,6 +6,7 @@ from .audit import (
 )
 from .backoff import BackoffDecision, BackoffPolicy
 from .brain import BrainCycleReport, HEOSBrainSupervisor
+from .brain_telemetry import BrainCycleTelemetry
 from .conflict import ConflictResolver, DecisionAction
 from .feedback import FeedbackEngine, FeedbackSummary
 from .guarded_pipeline import (
@@ -53,4 +54,5 @@ __all__ = [
     "RuntimeCycleRecord",
     "RuntimeCycleResult",
     "SelfHealingCoordinator",
+    "BrainCycleTelemetry",
 ]
